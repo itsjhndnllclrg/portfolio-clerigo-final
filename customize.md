@@ -11,7 +11,7 @@ images/
     logo.png          24x24 nav mark (shown small; export at 96x96 or larger, square)
     school-logo.png   64x64 school mark (export 192x192, square, transparent PNG is best)
   profile/
-    profile.jpg       400x400 square portrait
+    profile.webp      square portrait (site uses .webp; originals kept as .png/.jpg)
   projects/
     project-website.jpg         1280x720  (Featured project 1)
     figma-preview.jpg           390x844   (Figma / design project)

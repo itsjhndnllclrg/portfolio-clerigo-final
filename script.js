@@ -64,9 +64,9 @@ document.addEventListener("keydown", function (e) {
 });
 
 var menuDlg = document.getElementById("menu-dialog");
-document.getElementById("soft-menu").addEventListener("click", function () { menuDlg.showModal(); });
+document.getElementById("menu-open").addEventListener("click", function () { menuDlg.showModal(); });
 document.getElementById("menu-close").addEventListener("click", function () { menuDlg.close(); });
-document.getElementById("soft-top").addEventListener("click", function () { window.scrollTo({ top: 0, behavior: "smooth" }); });
+document.getElementById("back-to-top").addEventListener("click", function () { window.scrollTo({ top: 0, behavior: "smooth" }); });
 menuDlg.querySelectorAll("[data-go]").forEach(function (btn) {
   btn.addEventListener("click", function () {
     menuDlg.close();
@@ -83,7 +83,7 @@ function esc(s) {
 /* ===== PROJECTS AND TIMELINE (content lives in index.html) ===== */
 var filter = "all";
 var newestFirst = false;
-var timelineMount = document.getElementById("timeline-mount");
+var timelineMount = document.getElementById("assignment-timeline");
 
 function updateProgress() {
   var chips = timelineMount.querySelectorAll(".status-chip");
@@ -102,11 +102,11 @@ function updateProgress() {
 }
 
 function applyFilter() {
-  document.querySelectorAll("#featured-mount > [data-type]").forEach(function (card) {
+  document.querySelectorAll("#project-grid > [data-type]").forEach(function (card) {
     card.hidden = !(filter === "all" || card.getAttribute("data-type") === filter);
   });
-  document.getElementById("featured-part").hidden = filter === "assignment";
-  document.getElementById("timeline-part").hidden = filter === "website" || filter === "design";
+  document.getElementById("featured-projects").hidden = filter === "assignment";
+  document.getElementById("assignments-progress").hidden = filter === "website" || filter === "design";
 }
 
 document.querySelectorAll("[data-filter]").forEach(function (chip) {
@@ -141,7 +141,7 @@ document.getElementById("work").addEventListener("click", function (e) {
     var url = figmaBtn.getAttribute("data-figma");
     var embed = "https://www.figma.com/embed?embed_host=share&url=" + encodeURIComponent(url);
     slot.className = "figma-embed";
-    slot.innerHTML = '<iframe title="Interactive prototype" src="' + embed + '" loading="lazy" sandbox="allow-scripts allow-same-origin allow-popups"></iframe>' +
+    slot.innerHTML = '<iframe title="APIR interactive Figma prototype" src="' + embed + '" loading="lazy" sandbox="allow-scripts allow-same-origin allow-popups"></iframe>' +
       '<p><a href="' + esc(url) + '" target="_blank" rel="noopener noreferrer">Open prototype if the embed does not load</a></p>';
     return;
   }
@@ -153,7 +153,7 @@ document.getElementById("work").addEventListener("click", function (e) {
     prev.setAttribute("aria-pressed", open ? "true" : "false");
     if (open && !frame.querySelector("iframe")) {
       var src = prev.getAttribute("data-preview");
-      frame.innerHTML = '<iframe title="Assignment preview" src="' + esc(src) + '" loading="lazy" sandbox="allow-scripts"></iframe>';
+      frame.innerHTML = '<iframe title="' + esc(prev.closest('article').querySelector('strong').textContent) + ' preview" src="' + esc(src) + '" loading="lazy" sandbox="allow-scripts"></iframe>';
     }
   }
 });
