@@ -460,7 +460,8 @@ section { padding: 1.6rem 0; }
 .list-card { padding: 0; overflow: hidden; }
 .row-text { flex: 1; }
 .row-label { font-family: var(--font-pixel); font-size: 0.85rem; }
-.bio-todo { color: var(--muted); }
+.coursework-title { margin: 1rem 0 0.4rem; }
+.bio { margin-top: 1rem; color: var(--muted); }
 
 .skills-grid {
   display: grid;
