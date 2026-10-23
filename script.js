@@ -85,6 +85,28 @@ var filter = "all";
 var newestFirst = false;
 var timelineMount = document.getElementById("timeline-mount");
 
+function setupExpandableDescriptions() {
+  document.querySelectorAll(".project-summary.is-collapsible").forEach(function (p) {
+    var card = p.closest(".phone-card");
+    if (!card) return;
+    if (card.querySelector(".read-more-toggle")) return;
+
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "read-more-toggle";
+    btn.setAttribute("aria-expanded", "false");
+    btn.textContent = "Read more";
+    btn.addEventListener("click", function () {
+      var isExpanded = p.classList.toggle("is-expanded");
+      card.classList.toggle("is-expanded", isExpanded);
+      btn.setAttribute("aria-expanded", String(isExpanded));
+      btn.textContent = isExpanded ? "Read less" : "Read more";
+    });
+
+    p.insertAdjacentElement("afterend", btn);
+  });
+}
+
 function updateProgress() {
   var chips = timelineMount.querySelectorAll(".status-chip");
   var done = timelineMount.querySelectorAll(".status-chip.completed").length;
@@ -126,23 +148,33 @@ document.getElementById("sort-toggle").addEventListener("click", function () {
   items.forEach(function (li) { timelineMount.appendChild(li); });
 });
 
+setupExpandableDescriptions();
 updateProgress();
 applyFilter();
 
 document.getElementById("work").addEventListener("click", function (e) {
   var figmaBtn = e.target.closest("[data-figma]");
   if (figmaBtn) {
-    var slot = figmaBtn.closest("article").querySelector(".figma-slot") || (function () {
-      var d = document.createElement("div");
-      d.className = "figma-slot";
-      figmaBtn.closest("article").appendChild(d);
-      return d;
-    })();
+    var article = figmaBtn.closest("article");
+    var slot = article.querySelector(".figma-embed, .figma-slot");
+    if (slot && !slot.hidden) {
+      slot.hidden = true;
+      slot.innerHTML = "";
+      figmaBtn.textContent = "Load interactive prototype";
+      return;
+    }
+    if (!slot) {
+      slot = document.createElement("div");
+      slot.className = "figma-slot";
+      article.appendChild(slot);
+    }
     var url = figmaBtn.getAttribute("data-figma");
     var embed = "https://www.figma.com/embed?embed_host=share&url=" + encodeURIComponent(url);
     slot.className = "figma-embed";
+    slot.hidden = false;
     slot.innerHTML = '<iframe title="Interactive prototype" src="' + embed + '" loading="lazy" sandbox="allow-scripts allow-same-origin allow-popups"></iframe>' +
       '<p><a href="' + esc(url) + '" target="_blank" rel="noopener noreferrer">Open prototype if the embed does not load</a></p>';
+    figmaBtn.textContent = "Close prototype";
     return;
   }
   var prev = e.target.closest("[data-preview]");
