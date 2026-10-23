@@ -1,0 +1,102 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Pizza Trio</title>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Pizza Trio!</h1>
+        <p>The best trio pizza in town!</p>
+    </header>
+
+    <nav>
+         <a href="#about">About Us</a>
+         <a href="#menu">Menu</a>
+         <a href="#order">Order Now</a>
+    </nav>
+
+    <main>
+        <section id="about">
+            <h2>About Our Shop</h2>
+            <p>Hello! We only serve the best pizza. Choose from our three carefully selected pizza flavors, made from scratch with quality ingredients. What started from scratch is now a website, and we’re excited to share our pizza with you!
+</p>
+            <p>We use fresh cheese, sauce, and dough every single day.</p>
+            <img src="https://thumbs.dreamstime.com/b/three-pizzas-blue-azure-background-pizza-isolated-banner-copy-space-text-logo-italian-cuisine-design-meat-186172732.jpg" alt="A picture of a pizza">
+        </section>
+
+        <section id="menu">
+            <h2>Our Menu</h2>
+            <p>Just pick from the best of three!</p>
+            <ul>
+                <li><b>Duo Cheese Pizza</b> - Php 429 (Just cheese and cheese sauce)</li>
+                <li><b>Very Pepperoni Pizza</b> - Php 699 (Pepperoni and more pepperoni)</li>
+                <li><b>Lotso Veggie Pizza</b> - Php 559 (Peppers, Onions, Mushrooms)</li>
+            </ul>
+        </section>
+
+        <section id="order">
+            <h2>Order Your Pizza Here</h2>
+            <p>Please fill out this form to get your pizza:</p>
+
+            <form action="#" method="get">
+                <p>
+                    <label for="name">Your Name:</label><br>
+                    <input type="text" id="name" name="customer_name" placeholder="Enter your name">
+                </p>
+
+                <p>
+                    <label for="address">Delivery Address: </label><br>
+                    <textarea id="address" name="customer_address" rows="3" cols="30" placeholder="Enter your address"></textarea>
+                </p>
+
+                <p>
+                    <label for="pizza_type">Choose Pizza:</label><br>
+                    <select id="pizza_type" name="pizza_type">
+                        <option value="cheese">Duo Cheese Pizza</option>
+                        <option value="pepperoni">Very Pepperoni Pizza</option>
+                        <option value="veggie">Lotso Veggie Pizza</option>
+                    </select>
+                </p>
+                <p>
+                    <label for="quantity">Quantity:</label><br>
+                    <input type="number" id="quantity" name="quantity" value="1" min="1" max="10">
+                </p>
+                <p>
+                    <label>Choose Size:</label><br>
+                    <input type="radio" id="small" name="size" value="small">
+                    <label for="small">Small</label><br>
+
+                    <input type="radio" id="medium" name="size" value="medium" checked>
+                    <label for="medium">Medium</label><br>
+
+                    <input type="radio" id="large" name="size" value="large">
+                    <label for="large">Large</label>
+                </p>
+
+                <p>
+                    <label>Extra Toppings (Php 50 each):</label><br>
+                    <input type="checkbox" id="top1" name="toppings" value="extra_cheese">
+                    <label for="top1">Extra Cheese</label><br>
+
+                    <input type="checkbox" id="top2" name="toppings" value="mushrooms">
+                    <label for="top2">Mushrooms</label><br>
+
+                    <input type="checkbox" id="top3" name="toppings" value="olives">
+                    <label for="top3">Black Olives</label>
+                </p>
+
+                <p>
+                    <input type="submit" value="Send My Pizza Order!">
+                </p>
+            </form>
+        </section>
+
+    </main>
+    <footer>
+        <p>Thank you for visiting our Shop!</p>
+        <p>Copyright 2026 - Pizza Trio</p>
+    </footer>
+</body>
+</html>

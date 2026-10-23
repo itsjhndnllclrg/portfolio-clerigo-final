@@ -1,0 +1,55 @@
+
+body {
+    background-color: lightyellow;
+    font-family: sans-serif;
+    margin: 20px;
+}
+
+header {
+    background-color: red;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+nav {
+    background-color: black;
+    padding: 10px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    margin: 10px;
+}
+
+/* Section boxes */
+section {
+    background-color: white;
+    border: 2px solid orange;
+    padding: 15px;
+    margin-top: 15px;
+}
+
+h2 {
+    color: red;
+}
+
+/* Image width */
+img {
+    width: 500px;
+}
+
+/* Form button */
+input[type="submit"] {
+    background-color: green;
+    color: white;
+    padding: 8px;
+    font-size: 16px;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    margin-top: 20px;
+}
