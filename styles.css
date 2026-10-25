@@ -929,17 +929,22 @@ section { padding: 1.6rem 0; }
     margin: 0 auto;
   }
   .hero h1 {
-    font-size: clamp(1.35rem, 5.5vw, 1.8rem);
-    line-height: 1.04;
+    font-size: clamp(1.05rem, 5.8vw, 1.5rem);
+    line-height: 1.08;
     letter-spacing: -0.04em;
     max-width: 100%;
+    width: 100%;
     margin-bottom: 0.7rem;
+    text-align: left;
   }
   .hero-line {
     display: block;
-    white-space: normal;
+    white-space: nowrap;
+    font-size: inherit;
+    width: 100%;
   }
-  .hero-line-1 {
+  .hero-line-1,
+  .hero-line-2 {
     white-space: nowrap;
   }
   .hero p:not(.muted):not(.pixel) {
@@ -958,12 +963,65 @@ section { padding: 1.6rem 0; }
     justify-content: center;
   }
 }
+
+@media (min-width: 350px) and (max-width: 450px) {
+  .hero h1 {
+    font-size: clamp(0.96rem, 5.2vw, 1.3rem);
+    line-height: 1.1;
+  }
+}
+
 @media (min-width: 481px) {
   .skills-grid { grid-template-columns: 1fr 1fr; }
   .ba-grid { grid-template-columns: 1fr 1fr; }
   .hero-grid { grid-template-columns: 200px 1fr; align-items: center; }
   .wallpaper { margin: 0; max-width: none; }
 }
+
+@media (min-width: 482px) and (max-width: 700px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 1.1rem;
+  }
+  .wallpaper {
+    max-width: min(100%, 300px);
+    margin: 0 auto;
+  }
+  .hero-grid > div:last-child {
+    max-width: min(100%, 34rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .hero h1 {
+    font-size: clamp(1.5rem, 3.6vw, 2.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.05em;
+    max-width: 100%;
+    width: 100%;
+    text-align: center;
+    margin-inline: auto;
+  }
+  .hero-line {
+    display: block;
+    white-space: nowrap;
+  }
+  .hero p:not(.muted):not(.pixel) {
+    max-width: 42ch;
+    margin-inline: auto;
+    text-align: center;
+  }
+  .hero .muted.pixel,
+  .hero .pixel.muted {
+    text-align: center;
+  }
+  .hero-actions {
+    justify-content: center;
+  }
+}
+
 @media (min-width: 768px) {
   body { padding-bottom: 0; }
   .softkeys { display: none; }
