@@ -152,6 +152,36 @@ setupExpandableDescriptions();
 updateProgress();
 applyFilter();
 
+function forcePreviewTheme(iframe) {
+  if (!iframe) return;
+  iframe.style.background = "#ffffff";
+  iframe.style.border = "0";
+
+  var apply = function () {
+    try {
+      var doc = iframe.contentDocument || iframe.contentWindow.document;
+      if (!doc || !doc.head) return;
+      var style = doc.createElement("style");
+      style.textContent = "" +
+        "html, body { background: #ffffff !important; color: #111111 !important; }" +
+        "body * { color: inherit !important; background-color: transparent !important; }" +
+        "img, picture, video, canvas, svg { filter: none !important; -webkit-filter: none !important; }" +
+        "a, a * { color: #0b57d0 !important; }";
+      doc.head.appendChild(style);
+      if (doc.body) {
+        doc.body.style.background = "#ffffff";
+        doc.body.style.color = "#111111";
+      }
+    } catch (e) {}
+  };
+
+  if (iframe.contentDocument && iframe.contentDocument.readyState === "complete") {
+    apply();
+  } else {
+    iframe.addEventListener("load", apply, { once: true });
+  }
+}
+
 document.getElementById("work").addEventListener("click", function (e) {
   var figmaBtn = e.target.closest("[data-figma]");
   if (figmaBtn) {
@@ -185,7 +215,14 @@ document.getElementById("work").addEventListener("click", function (e) {
     prev.setAttribute("aria-pressed", open ? "true" : "false");
     if (open && !frame.querySelector("iframe")) {
       var src = prev.getAttribute("data-preview");
-      frame.innerHTML = '<iframe title="Assignment preview" src="' + esc(src) + '" loading="lazy" sandbox="allow-scripts"></iframe>';
+      var iframe = document.createElement("iframe");
+      iframe.title = "Assignment preview";
+      iframe.loading = "lazy";
+      iframe.setAttribute("sandbox", "allow-scripts");
+      iframe.src = src;
+      frame.innerHTML = "";
+      frame.appendChild(iframe);
+      forcePreviewTheme(iframe);
     }
   }
 });
